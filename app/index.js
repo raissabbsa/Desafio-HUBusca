@@ -1,9 +1,9 @@
-import { Link } from "expo-router";
 import { useContext, useState } from "react";
-import { Button, Alert, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import styled from 'styled-components';
 import axios from "axios"
 import { UserContext } from "../src/userData";
+import { Link } from "expo-router";
 
 export default function Page () {
     const { setUserData } = useContext(UserContext);
@@ -13,19 +13,10 @@ export default function Page () {
 
     function submit(){
         const URL = "https://api.github.com/users";
-        Alert.alert('Alert Title', URL, [
-            {
-              text: 'Cancel',
-              onPress: () => console.log('Cancel Pressed'),
-              style: 'cancel',
-            },
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ]);
         const promise = axios.get(`${URL}/${search}`)
         promise.then(res => {
             setAble(true);
             setUser(res.data);
-            console.log(res.data);
             setUserData(res.data);
         });
         promise.catch(err => {
@@ -46,9 +37,9 @@ export default function Page () {
                 {able? (
                     <View>
                         <Link href="/profile"><UserImage source={{uri: user.avatar_url}} /></Link>
-                        <Information>Nome:{user.name}</Information>
-                        <Information>Login:{user.login}</Information>
-                        <Information>Localização:{user.location}</Information>
+                        <Information>Nome: {user.name}</Information>
+                        <Information>Login: {user.login}</Information>
+                        <Information>Localização: {user.location}</Information>
                     </View>
                 ): (
                     <Text></Text>
@@ -61,12 +52,14 @@ const Container = styled.View`
     display: flex;
     background-color: pink;
     align-items: center;
-    padding: 100px;
+    padding-top: 100px;
     height: 100%;
+    box-sizing: border-box;
 `;
 
 const Title = styled.Text`
     font-size: 40px;
+    margin-bottom: 10px;
 `;
 
 const Teste = styled.View`
@@ -80,16 +73,18 @@ const SearchButton = styled.Button`
 `
 
 const Information = styled.Text`
-    font-size: 20px;
+    font-size: 14px;
 `
 const UserImage = styled.Image`
     width: 200px;
     height: 200px;
+    border-radius: 5px;
 `
 
 const Input = styled.TextInput`
     border: 1px solid black;
     height: 50px;
     width: 200px;
-    border-radius: 2px;
+    border-radius: 4px;
+    padding: 4px;
 `;
