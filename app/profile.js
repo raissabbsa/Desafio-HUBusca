@@ -1,6 +1,5 @@
 import { Text } from "react-native";
 import styled from 'styled-components';
-import { Link } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../src/userData";
 import axios from "axios";
@@ -53,7 +52,7 @@ const MainInformation = styled.View`
     align-items: center;
 `;
 const Repositories = styled.ScrollView`
-    margin-bottom: 200px;
+    margin-bottom: 300px;
 `;
 
 const Information = styled.Text`

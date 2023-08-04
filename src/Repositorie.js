@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import axios from "axios";
 import Language from "./Language";
 import styled from 'styled-components';
+import * as Linking from 'expo-linking';
 
 export default function Repositorie({rep}){
     const [adaptLanguages, setAdaptLanguages] = useState([]);
@@ -20,7 +21,7 @@ export default function Repositorie({rep}){
         })
     }, []);
     return(
-        <RepositorieInformation>
+        <RepositorieInformation onPress={() => console.log("oi")}>
             <TitleRepositorie>{rep.name}</TitleRepositorie>
             <TextRepositorie>Descrição: {rep.description}</TextRepositorie>
             <TextRepositorie>Data de criação: {rep.created_at.slice(0,10)}</TextRepositorie>
@@ -33,13 +34,21 @@ export default function Repositorie({rep}){
                     <Text></Text>
                 )}
             </LanguagesContainer>
-
+            <RepositorieButton title="Ir para o repositório" onPress={() => Linking.openURL(rep.html_url)}></RepositorieButton>
         </RepositorieInformation>
     )
 }
 const RepositorieInformation = styled.View`
     margin-top: 30px;
 `
+
+const RepositorieButton = styled.Button`
+    background-color: #000000;
+    color: black;
+    width: 10px;
+    height: 50px;
+    border-radius: 5px;
+`;
 
 const TitleRepositorie = styled.Text`
     font-weight: bold;
