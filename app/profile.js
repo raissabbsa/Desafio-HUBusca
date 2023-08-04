@@ -44,15 +44,17 @@ const Container = styled.View`
     background-color: pink;
     padding-top: 50px;
     width: 100%;
-    padding-left: 15px;
+    height: 100%;
+    padding-left: 10px;
 `;
 
 const MainInformation = styled.View`
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 `;
 const Repositories = styled.ScrollView`
-    margin-bottom: 300px;
+    padding-bottom: 400px;
 `;
 
 const Information = styled.Text`
